@@ -1,7 +1,7 @@
 import numpy as np
 import numpy.ma as ma
 
-def spatial_nGINI(y):
+def zonal_nGINI(y):
     y = y.compressed()
     y = (np.sort(y))
     w = np.full_like(y, 1)
