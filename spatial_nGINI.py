@@ -1,0 +1,20 @@
+import numpy as np
+
+def spatial_nGINI(y):
+    y = np.sort(y)
+    print y
+    w = np.full_like(y, 1)
+    N = sum(w)
+    C_i = np.cumsum(w)
+    num_1  = float(np.sum(y*C_i))
+    num_2 = float(np.sum(y))
+    num_3 = float(np.sum(y*w))
+    G_num = (2.0 / (N**2.0)) * num_1 - (1.0 / N) * num_2 - (1.0 / (N ** 2.0)) * num_3
+    t_neg =  y[y<=0]
+    T_neg = float(sum(t_neg))
+    T_pos = float(sum(y) + abs(T_neg))
+    n_RSV = float((2 * (T_pos + (abs(T_neg))) / N))
+    mean_RSV = float((n_RSV / 2))
+    G_RSV = float((1/mean_RSV)*G_num)
+    return  G_RSV
+
